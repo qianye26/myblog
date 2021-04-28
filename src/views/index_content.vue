@@ -1,11 +1,5 @@
 <template>
   <div class="index_content">
-    <!-- 面包屑 -->
-    <div class="breadcrumb">
-      <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{ path: '/' }"> 主页 </el-breadcrumb-item>
-      </el-breadcrumb>
-    </div>
     <articlelist :articlelist="articlelist"></articlelist>
     <div class="pagination">
       <el-pagination
@@ -77,19 +71,14 @@ export default {
 
 <style lang="less" scoped>
 .index_content {
-  width: 1250px;
-  height: 1000px;
-  padding-bottom: 40px;
+  flex: 5;
+  min-width: 640px;
+  margin: 0 20px 50px;
   position: relative;
-
-  .breadcrumb {
-    position: absolute;
-    top: -27px;
-  }
   .pagination {
     text-align: center;
     position: absolute;
-    bottom: 20px;
+    bottom: -30px;
     left: 50%;
     transform: translate(-50%, 0);
   }

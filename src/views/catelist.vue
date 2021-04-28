@@ -1,12 +1,5 @@
 <template>
   <div class="catelist">
-    <!-- 面包屑 -->
-    <div class="breadcrumb">
-      <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{ path: '/' }">主页</el-breadcrumb-item>
-        <el-breadcrumb-item>{{ catename }}</el-breadcrumb-item>
-      </el-breadcrumb>
-    </div>
     <!-- 文章区 -->
     <articlelist :articlelist="articlelist"></articlelist>
     <!-- 分页按钮 -->
@@ -58,6 +51,12 @@ export default {
       const res = await getArticleByCateId({ params: this.queryList })
       console.log(res);
       const resAry = res.data.data.list
+      // 将md格式转化为html格式
+      let converter = new showdown.Converter()  //初始化转换器
+      for (let i = 0; i < resAry.length; i++) {
+        let desc = converter.makeHtml(resAry[i].desc)
+        resAry[i].desc = desc
+      }
       this.updateArticleList(resAry)
       this.updateTotalNum(res.data.data.count)
       this.catename = resAry[0].cateName
@@ -90,18 +89,14 @@ export default {
 
 <style lang="less" scoped>
 .catelist {
-  width: 1250px;
-  height: 1000px;
-  padding-bottom: 40px;
+  flex: 5;
+  min-width: 640px;
+  margin: 0 20px 50px;
   position: relative;
-  .breadcrumb {
-    position: absolute;
-    top: -27px;
-  }
   .pagination {
     text-align: center;
     position: absolute;
-    bottom: 20px;
+    bottom: -40px;
     left: 50%;
     transform: translate(-50%, 0);
   }

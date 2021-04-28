@@ -6,6 +6,7 @@ const index_content = () => import('@/views/index_content')
 const catelist = () => import('@/views/catelist')
 const about = () => import('@/views/about')
 const detail = () => import('@/views/detail')
+const write = () => import('@/views/write')
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,10 @@ const routes = [
       {
         path: '/detail/:id',
         component: detail
+      },
+      {
+        path: '/write',
+        component: write
       }
     ]
   }

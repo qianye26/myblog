@@ -16,8 +16,8 @@
         <li @click="toabout">
           <div>关于</div>
         </li>
-        <li v-for="item in catelist" :key="item.id" @click="toCate(item.id)">
-          <div>{{ item.name }}</div>
+        <li>
+          <div>归档</div>
         </li>
       </ul>
     </div>
@@ -37,7 +37,6 @@ export default {
   data () {
     return {
       infolist: {},
-      catelist: [],
       queryList: {
         page: 1,
         rows: 3
@@ -50,7 +49,6 @@ export default {
   },
   created () {
     this.getBlogInfo()
-    this.getCateList()
   },
   methods: {
     ...mapMutations(['updateArticleList', 'updateTotalNum']),
@@ -58,11 +56,6 @@ export default {
     async getBlogInfo () {
       const res = await getInfo()
       this.infolist = res.data.data
-    },
-    // 获取分类列表
-    async getCateList () {
-      const res = await getCate()
-      this.catelist = res.data.data.list
     },
     // 获取文章列表
     async getArticleList () {
@@ -80,19 +73,7 @@ export default {
         this.$router.push('/index')
       }
     },
-    // 点击导航栏的 分类
-    toCate (id) {
-      if (this.cateid === id) {
-        this.$message.warning({
-          message: '刷新功能后续开发',
-          duration: 1000
-        })
-        return
-      } else {
-        this.cateid = id
-        this.$router.push('/cate/' + this.cateid)
-      }
-    },
+
     //  点击关于
     toabout () {
       if (this.$route.path === '/about') {
@@ -130,12 +111,11 @@ export default {
     position: absolute;
     color: #fff;
     font-size: 20px;
-    right: 200px;
-    bottom: -15px;
+    top: 110px;
+    right: 220px;
     ul {
       display: flex;
       list-style: none;
-      margin-top: 50px;
       li {
         padding: 20px 40px;
         cursor: pointer;

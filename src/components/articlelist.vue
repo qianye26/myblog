@@ -9,11 +9,9 @@
         </div>
       </div>
       <div class="desc">
-        <span class="desc_text">
-          {{ item.desc }}
-        </span>
+        <span class="desc_text" v-html="item.desc"> </span>
         <div class="more" @click="toDetail(item.id)">
-          <span>more</span>
+          <span>更多</span>
         </div>
       </div>
       <div class="below">
@@ -59,12 +57,12 @@ export default {
 <style lang="less" scoped>
 .article {
   width: 100%;
-  height: 300px;
+  overflow: hidden;
   background-color: #fff;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   transition: all 0.5s;
   &:hover {
-    box-shadow: 0 0 5px 5px #fff;
+    box-shadow: 0 0 3px 3px #fff;
   }
   .title {
     position: relative;
@@ -72,7 +70,7 @@ export default {
     border-bottom: 1px solid #ebeef5;
     span:nth-child(1) {
       display: inline-block;
-      font-size: 20px;
+      font-size: 22px;
       margin-left: 30px;
       margin-top: 20px;
       &:hover {
@@ -88,12 +86,17 @@ export default {
     }
   }
   .desc {
-    height: 150px;
+    // height: 150px;
+    min-height: 150px;
     border-bottom: 1px solid #ebeef5;
     position: relative;
     .desc_text {
       display: block;
-      padding: 30px 30px;
+      padding: 10px 30px 8px;
+      font-size: 18px;
+      line-height: 30px;
+      text-indent: 2em;
+      text-align: justify;
     }
     .more {
       cursor: pointer;
@@ -103,7 +106,7 @@ export default {
       padding: 5px 10px;
       border-radius: 10px;
       bottom: 10px;
-      left: 30px;
+      right: 35px;
       background-color: #f3f3f3;
       &:hover {
         color: #fff;

@@ -14,3 +14,6 @@ export const getArticleByCateId = (obj) => $http.get('/article/findByCateId', ob
 
 // 根据文章id  获取文章详细数据
 export const getArticleDetail = (id) => $http.get('/article/' + `${id}`)
+
+// 添加文章
+export const addArticle = (obj) => $http.post('/article/', obj)
